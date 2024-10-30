@@ -1,0 +1,14 @@
+package com.todo.mapper;
+
+import java.util.List;
+
+import com.todo.vo.Todo;
+
+public class TodoMapper {
+
+	public List<Todo> allList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

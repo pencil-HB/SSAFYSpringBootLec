@@ -1,0 +1,61 @@
+package com.todo.service;
+
+import java.util.List;
+
+import org.apache.catalina.mapper.Mapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.todo.mapper.TodoMapper;
+import com.todo.vo.Todo;
+
+@Service
+public class TodoServiceImpl implements TodoService {
+
+	@Autowired
+	TodoMapper mapper;
+	
+	@Override
+	public List<Todo> allList() {
+		return mapper.allList();
+	}
+
+	@Override
+	public List<Todo> allListById(String userId) {
+		return mapper.allListById(userId);
+	}
+
+	@Override
+	public Todo find(String num) {
+		return mapper.find(num);
+	}
+
+	@Override
+	public boolean add(Todo todo) {
+		return mapper.add(todo)>0;
+	}
+
+	@Override
+	public boolean modify(Todo todo) {
+		return mapper.modify(todo) > 0;
+	}
+
+	@Override
+	public boolean delete(String num) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean complete(Todo todo) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void deleteAll() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+}

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.todo.mapper.TodoMapper">
+
+    <!-- 모든 할일 목록 조회 -->
+    <select id="allList" resultType="com.todo.vo.Todo">
+        SELECT * FROM todo
+    </select>
+
+    <!-- 사용자 별 모든 할일 목록 조회 -->
+    <select id="allListById" parameterType="String" resultType="com.todo.vo.Todo">
+        SELECT * FROM todo WHERE userid = #{userId}
+    </select>
+
+    <!-- 번호 기준으로 할일 검색 -->
+    <select id="find" parameterType="String" resultType="com.todo.vo.Todo">
+        SELECT * FROM todo WHERE num = #{num}
+    </select>
+
+    <!-- 할일 등록 -->
+    <insert id="add" parameterType="com.todo.vo.Todo">
+        INSERT INTO todo (content, userid, sdate, edate, done)
+        VALUES (#{content}, #{userId}, #{sdate}, #{edate}, #{done})
+    </insert>
+
+    <!-- 할일 수정 (번호 기준 시작일, 종료일, 내용 수정) -->
+    <update id="modify" parameterType="com.todo.vo.Todo">
+        UPDATE todo
+        SET content = #{content}, sdate = #{sdate}, edate = #{edate}, done = #{done}
+        WHERE num = #{num}
+    </update>
+
+    <!-- 번호 기준으로 할일 삭제 -->
+    <delete id="delete" parameterType="String">
+        DELETE FROM todo WHERE num = #{num}
+    </delete>
+
+    <!-- 완료 여부 변경 (N->Y, Y->N) -->
+    <update id="complete" parameterType="com.todo.vo.Todo">
+        UPDATE todo
+        SET done = #{done}
+        WHERE num = #{num}
+    </update>
+
+    <!-- 모든 할일 삭제 -->
+    <delete id="deleteAll">
+        DELETE FROM todo
+    </delete>
+
+</mapper>
